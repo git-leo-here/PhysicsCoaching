@@ -16,7 +16,6 @@
 html {
   font-size: 62.5%;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 section {
@@ -656,6 +655,13 @@ section {
 }
 
 .contact .icons-container .icons p {
+  line-height: 2;
+  font-size: 1.4rem;
+  color: #666;
+}
+
+.contact .icons-container .icons a {
+  display: block;
   line-height: 2;
   font-size: 1.4rem;
   color: #666;
