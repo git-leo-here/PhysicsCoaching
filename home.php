@@ -35,8 +35,8 @@
 					<li>
 						<a href="#">courses +</a>
 						<ul>
-							<li><a href="course-1.html">class 11</a></li>
-							<li><a href="course-2.html">class 12</a></li>
+							<li><a href="subject.php?class=11">class 11</a></li>
+							<li><a href="subject.php?class=12">class 12</a></li>
 						</ul>
 					</li>
 					<li><a href="#contact">contact</a></li>
@@ -505,22 +505,16 @@
 					<a href="about.html">
 						<i class="fas fa-arrow-right"></i> about
 					</a>
-					<a href="course-1.html">
-						<i class="fas fa-arrow-right"></i> course-1
+					<a href="subject.php?class=11">
+						<i class="fas fa-arrow-right"></i> class 11
 					</a>
-					<a href="course-2.html">
-						<i class="fas fa-arrow-right"></i>course-2
+					<a href="subject.php?class=11">
+						<i class="fas fa-arrow-right"></i> class 12
 					</a>
-					<a href="course-3.html">
-						<i class="fas fa-arrow-right"></i> course-3
-					</a>
-					<a href="teachers.html">
+					<a href="#about">
 						<i class="fas fa-arrow-right"></i> teachers
 					</a>
-					<a href="blog.html">
-						<i class="fas fa-arrow-right"></i> blog
-					</a>
-					<a href="contact.html">
+					<a href="#contact">
 						<i class="fas fa-arrow-right"></i> contact
 					</a>
 				</div>
