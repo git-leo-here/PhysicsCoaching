@@ -183,6 +183,18 @@ section {
 	line-height: 2.5;
 }
 
+.home .content .item {
+	font-size: 2rem;
+	line-height: 2;
+}
+
+.home .content .item i {
+	color: #fa1d86;
+	font-size: 1.5rem;
+	background-color: #e9edfb;
+	border-radius: 0.5rem;
+}
+
 .category {
 	display: -ms-grid;
 	display: grid;

@@ -499,7 +499,7 @@
 			<div class="box-container">
 				<div class="box">
 					<h3>explore</h3>
-					<a href="home.html">
+					<a href="home.php">
 						<i class="fas fa-arrow-right"></i> home
 					</a>
 					<a href="about.html">
