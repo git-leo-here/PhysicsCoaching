@@ -449,18 +449,31 @@
 				</div>
 			</div>
 
+			
 			<div class="row">
-				<form action="">
+				<form action="./contacted.php" method="get">
 					<h3>get in touch</h3>
-					<input type="text" placeholder="your name" class="box" />
+					<input
+						type="text"
+						placeholder="your name"
+						class="box"
+						name="name"
+					/>
 					<input
 						type="number"
 						placeholder="your number"
 						class="box"
+						name="phone"
+						size='10'
 					/>
-					<input type="email" placeholder="your email" class="box" />
+					<input
+						type="email"
+						placeholder="your email"
+						class="box"
+						name="email"
+					/>
 					<textarea
-						name=""
+						name="message"
 						placeholder="your message"
 						id=""
 						cols="30"
