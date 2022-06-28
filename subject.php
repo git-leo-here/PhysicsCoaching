@@ -26,7 +26,7 @@
 
     <nav class="navbar">
         <ul>
-            <li><a href="home.html">home</a></li>
+            <li><a href="home.php">home</a></li>
             <li><a href="#testimonials">testimonials</a></li>
             <li><a href="#about">about</a></li>
             <li>
@@ -339,7 +339,7 @@
 
         <div class="box">
             <h3>explore</h3>
-			<a href="home.html">
+			<a href="home.php">
 				<i class="fas fa-arrow-right"></i> home
 			</a>
 			<a href="about.html">
@@ -351,7 +351,7 @@
 			<a href="subject.php?class=11">
 				<i class="fas fa-arrow-right"></i> class 12
 			</a>
-			<a href="home.html#about">
+			<a href="home.php#about">
 				<i class="fas fa-arrow-right"></i> teachers
 			</a>
 			<a href="#contact">
