@@ -389,7 +389,7 @@
 				?>
 			
 	<div class="row">
-		<form action="./home.php" method="post">
+		<form action="./subject.php" method="post">
 			<h3>get in touch</h3>
 			<input
 				type="text"
