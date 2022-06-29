@@ -27,7 +27,7 @@
     <nav class="navbar">
         <ul>
             <li><a href="home.php">home</a></li>
-            <li><a href="home#testimonials">testimonials</a></li>
+            <li><a href="home.php#testimonials">testimonials</a></li>
             <li><a href="#about">about</a></li>
             <li>
                 <a href="#">courses +</a>
