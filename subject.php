@@ -36,7 +36,7 @@
 					<li><a href="subject.php?class=12">class 12</a></li>
                 </ul>
             </li>
-            <li><a href="#contact">contact</a></li>
+            <li><a href="home.php#contact">contact</a></li>
         </ul>
     </nav>
 </header>
