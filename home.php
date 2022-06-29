@@ -56,15 +56,15 @@
 			<div class="content">
 				<h3>Premium Physics Coaching</h3>
 				<h5>At Comfort Of Your Home</h5>
-
+				<br>
 				<div class="item">
-					<i class="fa fa-check"></i> Instant Doubt Solving
+					<i class="fa fa-check"></i> &nbsp; Instant Doubt Solving
 				</div>
 				<div class="item">
-					<i class="fa fa-check"></i> Daily Practice Problems
+					<i class="fa fa-check"></i> &nbsp;  Daily Practice Problems
 				</div>
 				<div class="item">
-					<i class="fa fa-check"></i> Monthly Tests
+					<i class="fa fa-check"></i> &nbsp; Monthly Tests
 				</div>
 
 				<a href="#contact" class="btn">Get in Touch</a>
@@ -450,35 +450,122 @@
 			</div>
 
 			
+				<?php
+					$name = $email = $phone = $message = "";
+					$nameerr = $emailerr = $phoneerr = $messageerr = "";
+					$err = 0;
+					$nameerrfill = $phoneerrfill = $emailerrfill = $messageerrfill = "";
+					if ($_SERVER['REQUEST_METHOD'] == 'POST')
+					{
+						
+						function test_inputs($data)
+						{
+							$data = trim($data);
+							$data = stripslashes($data);
+							$data = htmlspecialchars($data);
+							return $data;
+						}
+					
+						$timestamp = date('Y-m-d H:i:s');
+
+						if(empty($_POST['email'])) {
+							$emailerr = "*Email is required";
+						} else {
+							$email = test_inputs($_POST['email']);
+							if(!filter_var($email,FILTER_VALIDATE_EMAIL))
+							{
+								$emailerr = "*Invalid email address";
+								$err = 1;
+							} else {
+								$err = 0;
+							}
+						} 
+						if(empty($_POST['name'])) {
+							$nameerr = "*Name is required";
+						} else {
+							$name = test_inputs($_POST['name']);
+							if(!preg_match("/^[a-zA-Z-' ]*$/",$name))
+							{
+								$nameerr = "*Only letters & whitespace allowed";
+								$err = 1;
+							} else {
+								$err = 0;
+							}
+						} 
+						if(empty($_POST['message'])) {
+							$messageerr = "*Please enter a message";
+						} else {
+							$message = test_inputs($_POST['message']);
+							$err = 0;
+						}
+						if(empty($_POST['phone']))
+						{
+							$phoneerr = "*Please enter a phone number";
+						} else {
+							$phone = test_inputs($_POST['phone']);
+							if(!preg_match('/^\d{10}/', $phone))
+							{
+								$phoneerr = "*Invalid Phone number";
+								$err = 1;
+							} else {
+								$err = 0;
+							}
+						}
+						if($err == 0)
+						{
+							$conn = mysqli_connect('localhost', 'root', '', 'eduphysics');
+							$sql = "INSERT INTO contact_details (name, phone, email, message, timestamp) VALUES ('$name', '$phone', '$email', '$message', '$timestamp');";
+    						$result = mysqli_query($conn, $sql);
+							popup();
+						} else {							
+							$emailerrfill = $email;
+							$nameerrfill = $name;							
+							$phoneerrfill = $phone;
+							$messageerrfill = $message;
+						}
+					}
+				?>
+			
 			<div class="row">
-				<form action="./contacted.php" method="get">
+				<form action="./home.php" method="post">
 					<h3>get in touch</h3>
 					<input
 						type="text"
 						placeholder="your name"
 						class="box"
 						name="name"
+						value="<?php echo $nameerrfill; ?>"
+						required
 					/>
+					<span style="color: red;"><?php echo $nameerr; ?></span>
 					<input
 						type="number"
 						placeholder="your number"
 						class="box"
 						name="phone"
 						size='10'
+						value="<?php echo $phoneerrfill; ?>"
+						required
 					/>
+					<span style="color: red;"><?php echo $phoneerr; ?></span>
 					<input
 						type="email"
 						placeholder="your email"
 						class="box"
 						name="email"
+						value="<?php echo $emailerrfill; ?>"
+						required
 					/>
+					<span style="color: red;"><?php echo $emailerr; ?></span>
 					<textarea
 						name="message"
 						placeholder="your message"
 						id=""
 						cols="30"
 						rows="10"
-					></textarea>
+						required
+					><?php echo $messageerrfill; ?></textarea>
+					<span style="color: red;"><?php echo $messageerr; ?></span> 
 					<input type="submit" value="send message" class="btn" />
 				</form>
 
@@ -583,7 +670,94 @@
 		</section>
 
 		<!-- footer section ends -->
+		<!-- popup ---->
 
+		<?php
+			function popup()
+			{
+				echo '<div class="popupcontent">';
+				echo '<div class="wrapper-1">';
+				echo '<div class="wrapper-2"><br><br>';
+				echo '<h1>Thank you !</h1>';
+				echo '<p>Thanks for contacting us.</p>' ;
+				echo '<p>We will get in touch with you as soon as possible. </p>' ;
+				echo '<a href="./home.php" class="go-home"> Close </a>';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+			}
+		?>
+		<style>
+			.wrapper-1{
+  				width:100%;
+  				height:100vh;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 20;
+				background: #fff;
+				box-shadow: 4px 8px 40px 800px rgba(31, 143, 255,0.5);
+				border-radius: 10px;
+  				display: flex;
+				flex-direction: column;
+			}
+			.wrapper-2{
+				padding:30px;
+				height: 45vh;
+				text-align:center;
+			}
+			h1{
+				font-family: 'Kaushan Script', cursive;
+				font-size:4em;
+				letter-spacing:3px;
+				color:#5892FF ;
+				margin:0;
+				margin-bottom:20px;
+			}
+			.wrapper-2 p{
+				margin:0;
+				font-size:1.5em;
+				color:#aaa;
+				font-family: 'Source Sans Pro', sans-serif;
+				letter-spacing:1px;
+			}
+			.go-home{
+				display : inline-block;
+				text-decoration:none;
+				font-size: 1.8rem;
+				color:#fff;
+				background:#5892FF;
+				border:none;
+				padding:10px 40px;
+				margin:30px 10px;
+				border-radius:30px;
+				text-transform:capitalize;
+			}
+
+			@media (min-width:360px){
+			h1{
+				font-size:4.5em;
+			}
+			.go-home{
+				margin-bottom:20px;
+			}
+			}
+
+			@media (min-width:600px){
+				.popupcontent{
+					max-width:1000px;
+					margin:0 auto;
+				}
+				.wrapper-1{
+					height: initial;
+					max-width:620px;
+					margin:0 auto;
+					margin-top:50px;
+				}
+			
+			}
+		</style>
 		<!-- Swiper JS -->
 		<script src="js/swiper-bundle.min.js"></script>
 

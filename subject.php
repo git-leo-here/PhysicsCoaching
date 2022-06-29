@@ -312,16 +312,124 @@
 
     </div>
 
-    <div class="row">
+    <?php
+					$name = $email = $phone = $message = "";
+					$nameerr = $emailerr = $phoneerr = $messageerr = "";
+					$err = 0;
+					$nameerrfill = $phoneerrfill = $emailerrfill = $messageerrfill = "";
+					if ($_SERVER['REQUEST_METHOD'] == 'POST')
+					{
+						
+						function test_inputs($data)
+						{
+							$data = trim($data);
+							$data = stripslashes($data);
+							$data = htmlspecialchars($data);
+							return $data;
+						}
+					
+						$timestamp = date('Y-m-d H:i:s');
 
-        <form method="post" action="">
-            <h3>get in touch</h3>
-            <input type="text" placeholder="your name" class="box">
-            <input type="number" placeholder="your number" class="box">
-            <input type="email" placeholder="your email" class="box">
-            <textarea name="" placeholder="your message" id="" cols="30" rows="10"></textarea>
-            <input type="submit" value="send message" class="btn">
-        </form>
+						if(empty($_POST['email'])) {
+							$emailerr = "*Email is required";
+						} else {
+							$email = test_inputs($_POST['email']);
+							if(!filter_var($email,FILTER_VALIDATE_EMAIL))
+							{
+								$emailerr = "*Invalid email address";
+								$err = 1;
+							} else {
+								$err = 0;
+							}
+						} 
+						if(empty($_POST['name'])) {
+							$nameerr = "*Name is required";
+						} else {
+							$name = test_inputs($_POST['name']);
+							if(!preg_match("/^[a-zA-Z-' ]*$/",$name))
+							{
+								$nameerr = "*Only letters & whitespace allowed";
+								$err = 1;
+							} else {
+								$err = 0;
+							}
+						} 
+						if(empty($_POST['message'])) {
+							$messageerr = "*Please enter a message";
+						} else {
+							$message = test_inputs($_POST['message']);
+							$err = 0;
+						}
+						if(empty($_POST['phone']))
+						{
+							$phoneerr = "*Please enter a phone number";
+						} else {
+							$phone = test_inputs($_POST['phone']);
+							if(!preg_match('/^\d{10}/', $phone))
+							{
+								$phoneerr = "*Invalid Phone number";
+								$err = 1;
+							} else {
+								$err = 0;
+							}
+						}
+						if($err == 0)
+						{
+							$conn = mysqli_connect('localhost', 'root', '', 'eduphysics');
+							$sql = "INSERT INTO contact_details (name, phone, email, message, timestamp) VALUES ('$name', '$phone', '$email', '$message', '$timestamp');";
+    						$result = mysqli_query($conn, $sql);
+							popup();
+						} else {							
+							$emailerrfill = $email;
+							$nameerrfill = $name;							
+							$phoneerrfill = $phone;
+							$messageerrfill = $message;
+						}
+					}
+				?>
+			
+	<div class="row">
+		<form action="./home.php" method="post">
+			<h3>get in touch</h3>
+			<input
+				type="text"
+				placeholder="your name"
+				class="box"
+				name="name"
+				value="<?php echo $nameerrfill; ?>"
+				required
+			/>
+			<span style="color: red;"><?php echo $nameerr; ?></span>
+			<input
+				type="number"
+				placeholder="your number"
+				class="box"
+				name="phone"
+				size='10'
+				value="<?php echo $phoneerrfill; ?>"
+				required
+			/>
+			<span style="color: red;"><?php echo $phoneerr; ?></span>
+			<input
+			    type="email"
+				placeholder="your email"
+				class="box"
+				name="email"
+				value="<?php echo $emailerrfill; ?>"
+				required
+			/>
+			<span style="color: red;"><?php echo $emailerr; ?></span>
+			<textarea
+				name="message"
+				placeholder="your message"
+				id=""
+				cols="30"
+				rows="10"
+			    required
+			><?php echo $messageerrfill; ?></textarea>
+			<span style="color: red;"><?php echo $messageerr; ?></span> 
+			<input type="submit" value="send message" class="btn" />
+		</form>
 
         <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15076.89592087332!2d72.8319697277345!3d19.14167056419224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1635757298406!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
 
@@ -391,12 +499,99 @@
 
     </div>
 
-    <div class="credit"> created by <span>mr. web designer</span> | all rights reserved! </div>
+    <div class="credit"> created by <span> Bengali Developers</span> | all rights reserved! </div>
 
 </section>
 
 <!-- footer section ends -->
+<!-- popup ---->
 
+        <?php
+			function popup()
+			{
+				echo '<div class="popupcontent">';
+				echo '<div class="wrapper-1">';
+				echo '<div class="wrapper-2"><br><br>';
+				echo '<h1>Thank you !</h1>';
+				echo '<p>Thanks for contacting us.</p>' ;
+				echo '<p>We will get in touch with you as soon as possible. </p>' ;
+				echo '<a href="./home.php" class="go-home"> Close </a>';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+			}
+		?>
+		<style>
+			.wrapper-1{
+  				width:100%;
+  				height:100vh;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 20;
+				background: #fff;
+				box-shadow: 4px 8px 40px 800px rgba(31, 143, 255,0.5);
+				border-radius: 10px;
+  				display: flex;
+				flex-direction: column;
+			}
+			.wrapper-2{
+				padding:30px;
+				height: 45vh;
+				text-align:center;
+			}
+			h1{
+				font-family: 'Kaushan Script', cursive;
+				font-size:4em;
+				letter-spacing:3px;
+				color:#5892FF ;
+				margin:0;
+				margin-bottom:20px;
+			}
+			.wrapper-2 p{
+				margin:0;
+				font-size:1.5em;
+				color:#aaa;
+				font-family: 'Source Sans Pro', sans-serif;
+				letter-spacing:1px;
+			}
+			.go-home{
+				display : inline-block;
+				text-decoration:none;
+				font-size: 1.8rem;
+				color:#fff;
+				background:#5892FF;
+				border:none;
+				padding:10px 40px;
+				margin:30px 10px;
+				border-radius:30px;
+				text-transform:capitalize;
+			}
+
+			@media (min-width:360px){
+			h1{
+				font-size:4.5em;
+			}
+			.go-home{
+				margin-bottom:20px;
+			}
+			}
+
+			@media (min-width:600px){
+				.popupcontent{
+					max-width:1000px;
+					margin:0 auto;
+				}
+				.wrapper-1{
+					height: initial;
+					max-width:620px;
+					margin:0 auto;
+					margin-top:50px;
+				}
+			
+			}
+		</style>
 <div class="icon_attributes" style="display: none;">
     1 class 11 || waves || <a href="https://www.flaticon.com/free-icons/sound-waves" title="sound-waves icons">Sound-waves icons created by Freepik - Flaticon</a>
     2 class 11 || work energy power || <a href="https://www.flaticon.com/free-icons/innovate" title="innovate icons">Innovate icons created by Uniconlabs - Flaticon</a>
