@@ -106,11 +106,24 @@ h1{
     
     <?php 
     // insert contact details
+    
+    function test_inputs($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     $name = $_GET['name'];
     $phone = $_GET['phone'];
     $email = $_GET['email'];
     $message = $_GET['message'];
     $timestamp = date('Y-m-d H:i:s');
+
+    $name = test_inputs($name);
+    $message = test_inputs($message);
+    $email =  test_inputs($email);
 
     $conn = mysqli_connect('localhost', 'root', '', 'eduphysics');
 
