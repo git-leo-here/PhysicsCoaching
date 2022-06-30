@@ -16,6 +16,12 @@
 
 		<!-- custom css file link  -->
 		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			.login_btn{
+				background: #fa1d86;
+				padding: 1.5rem;
+			}
+		</style>
 	</head>
 	<body>
 		<!-- header section starts  -->
@@ -40,6 +46,7 @@
 						</ul>
 					</li>
 					<li><a href="#contact">contact</a></li>
+					<li><a class="login_btn" href="login.php">login</a></li>
 				</ul>
 			</nav>
 		</header>
