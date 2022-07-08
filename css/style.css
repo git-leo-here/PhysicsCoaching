@@ -490,62 +490,12 @@ section {
 	overflow: hidden;
 }
 
-.teachers .box:hover .image .share {
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
-}
-
-.teachers .box:hover .image .share a {
-	-webkit-transform: translateY(-1rem);
-	transform: translateY(-1rem);
-	opacity: 1;
-	-webkit-transition: -webkit-transform 0.2s 0.2s;
-	transition: -webkit-transform 0.2s 0.2s;
-	transition: transform 0.2s 0.2s;
-	transition: transform 0.2s 0.2s, -webkit-transform 0.2s 0.2s;
-}
-
 .teachers .box .image {
 	overflow: hidden;
 	height: 32rem;
 	width: 100%;
 	position: relative;
 	border-radius: 1rem;
-}
-
-.teachers .box .image .share {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background: rgba(0, 0, 0, 0.7);
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: end;
-	-ms-flex-align: end;
-	align-items: flex-end;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	z-index: 10;
-	overflow: hidden;
-	-webkit-transform: translateY(-100%);
-	transform: translateY(-100%);
-}
-
-.teachers .box .image .share a {
-	font-size: 2.5rem;
-	margin: 2rem 1.5rem;
-	color: #fff;
-	-webkit-transform: translateY(5rem);
-	transform: translateY(5rem);
-	opacity: 0;
-}
-
-.teachers .box .image .share a:hover {
-	color: #fa1d86;
 }
 
 .teachers .box .image img {
@@ -910,7 +860,7 @@ section {
 	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 836px) {
 	.slide-content {
 		margin: 0 10px;
 	}
