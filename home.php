@@ -382,53 +382,89 @@
 		<section class="heading" id="about">
 			<h3>Know Your Teacher</h3>
 		</section>
-
-		<section class="teachers">
-			<div class="box">
+			
+				<style>
+					.box_t {
+						display: grid;
+						grid-template-areas: 'p d'
+											'p d';
+						gap: 4rem;
+						
+						justify-content: center;
+					}
+					.teachers .box_t .image
+					{
+						grid-area: p;
+						width: 100%;
+					}
+					.teachers .box_t .content {
+						text-align: left;
+						grid-area: d;
+						width: 55rem;
+					}
+					.teachers .box_t .content h3{
+						font-size: 4rem;
+					}
+					.teachers .box_t .content p{
+						padding: 0 0.5rem;
+						font-size: 1.8rem;
+						color: #666;
+					}
+					.content .share{
+						position: relative;
+						top: 0;
+						left: 0;
+						display: flex;
+						align-items: flex-end;
+						justify-content: left;
+						z-index: 10;
+						overflow: hidden;
+					}
+					.content .share a{
+						font-size: 2.5rem;
+						margin: 1.5rem 1.5rem;
+						color: #224bcf;
+					}
+					.content .share a:hover {
+						color: #fa1d86;
+					}
+					@media (max-width: 836px)
+					{
+						.box_t
+						{
+							grid-template-areas: 'p'
+												'd';
+							gap: 2rem;
+						}
+						.box_t .image
+						{
+							min-height: 50rem;
+						}
+						.teachers .box_t .content {
+							display: grid;
+							justify-content: center;
+						}
+						.teachers .box_t .content p {
+							display: grid;
+							justify-content: center;
+							align-items: center;
+						}
+					}
+				</style>
+		<section class="teachers" style="display: block;">
+			<div class="box box_t">
 				<div class="image">
 					<img src="images/teacher-1.png" alt="" />
+				</div>
+				<div class="content">
+					<h3>john deo</h3>
+					<p>web designer</p>
 					<div class="share">
 						<a href="#" class="fab fa-facebook-f"></a>
 						<a href="#" class="fab fa-twitter"></a>
 						<a href="#" class="fab fa-instagram"></a>
 						<a href="#" class="fab fa-linkedin"></a>
 					</div>
-				</div>
-				<div class="content">
-					<h3>john deo</h3>
-					<span>web designer</span>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="image">
-					<img src="images/teacher-2.png" alt="" />
-					<div class="share">
-						<a href="#" class="fab fa-facebook-f"></a>
-						<a href="#" class="fab fa-twitter"></a>
-						<a href="#" class="fab fa-instagram"></a>
-						<a href="#" class="fab fa-linkedin"></a>
-					</div>
-				</div>
-				<div class="content">
-					<h3>john deo</h3>
-					<span>web designer</span>
-				</div>
-			</div>
-
-			<div class="box">
-				<div class="image">
-					<img src="images/teacher-3.png" alt="" />
-					<div class="share">
-						<a href="#" class="fab fa-facebook-f"></a>
-						<a href="#" class="fab fa-twitter"></a>
-						<a href="#" class="fab fa-instagram"></a>
-						<a href="#" class="fab fa-linkedin"></a>
-					</div>
-				</div>
-				<div class="content">
-					<h3>john deo</h3>
-					<span>web designer</span>
 				</div>
 			</div>
 		</section>
