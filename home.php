@@ -19,17 +19,12 @@
 		<style>
 			.login_btn{
 				background: #fa1d86;
-				padding: 1.5rem;
+				padding: 0.5rem 50px;
+				margin: 5px;
+				border-radius: 4rem;
 			}
 		</style>
-		<script>
-			function plus_to_min() {
-				document.querySelector("#cos").innerHTML="courses -";
-			}
-			function min_to_plus() {
-				document.querySelector("#cos").innerHTML="courses +";
-			}
-		</script>
+
 	</head>
 	<body>
 		<!-- header section starts  -->
@@ -46,15 +41,10 @@
 					<li><a href="home.html">home</a></li>
 					<li><a href="#testimonials">testimonials</a></li>
 					<li><a href="#about">about</a></li>
-					<li>
-						<a href="#" id="cos" onmousemove="plus_to_min();" onmouseout="min_to_plus();">courses +</a>
-						<ul>
-							<li><a href="subject.php?class=11">class 11</a></li>
-							<li><a href="subject.php?class=12">class 12</a></li>
-						</ul>
-					</li>
 					<li><a href="#contact">contact</a></li>
-					<li><a class="login_btn" href="login.php">login</a></li>
+					<li>
+						<?php echo $login_button ?>
+					</li>
 				</ul>
 			</nav>
 		</header>
@@ -578,7 +568,7 @@
 				?>
 			
 			<div class="row">
-				<form action="./home.php" method="post">
+				<form action="./home.php#contact" method="post">
 					<h3>get in touch</h3>
 					<input
 						type="text"

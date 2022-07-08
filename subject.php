@@ -11,6 +11,22 @@
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+			.login_btn{
+				background: #fa1d86;
+				padding: 0.5rem 50px;
+				margin: 5px;
+				border-radius: 4rem;
+			}
+	</style>
+    <script>
+			function plus_to_min() {
+				document.querySelector("#cos").innerHTML="courses -";
+			}
+			function min_to_plus() {
+				document.querySelector("#cos").innerHTML="courses +";
+			}
+	</script>
 
 </head>
 <body>
@@ -27,16 +43,17 @@
     <nav class="navbar">
         <ul>
             <li><a href="home.php">home</a></li>
-            <li><a href="home.php#testimonials">testimonials</a></li>
             <li><a href="#about">about</a></li>
-            <li>
-                <a href="#">courses +</a>
-                <ul>
-                    <li><a href="subject.php?class=11">class 11</a></li>
+			<li>
+				<a href="#" id="cos" onmousemove="plus_to_min();" onmouseout="min_to_plus();">courses +</a>
+				<ul>
+					<li><a href="subject.php?class=11">class 11</a></li>
 					<li><a href="subject.php?class=12">class 12</a></li>
-                </ul>
+				</ul>
+			</li>
+            <li>
+                <a href="logout.php" class="login_btn">Logout</a>
             </li>
-            <li><a href="home.php#contact">contact</a></li>
         </ul>
     </nav>
 </header>
